@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { withRouter } from 'react-router-dom'
 import { ListItem } from 'material-ui/List'
 import ActionGrade from 'material-ui/svg-icons/action/grade'
 import Avatar from 'material-ui/Avatar'
@@ -13,21 +14,6 @@ import UserProfile from './UserProfile'
 class UserList extends Component {
   constructor() {
     super()
-    this.state = {
-      users: []
-    }
-  }
-
-  componentDidMount() {
-    fetch('/data/users.js', {
-        method: 'get'
-    }).then((response) => {
-        return response.json()
-    }).then((data) => {
-        this.setState({ users: data })
-    }).catch((err)=> {
-        console.log(err)
-    })
   }
 
   showUserProfile(user) {
@@ -35,12 +21,12 @@ class UserList extends Component {
   }
 
   render() {
-    const { match, width } = this.props
+    const { match, width, users } = this.props
     
     return (
       <View style={{ display: 'flex' }}>
         <View>
-          { this.state.users.map(user => (
+          { users.map(user => (
             <ListItem
               onClick={this.showUserProfile.bind(this, user)} key={user.username} style={{color: "black"}}
               primaryText={ `${user.name.first} ${user.name.last}`}
@@ -55,7 +41,7 @@ class UserList extends Component {
   }
 }
 
-export default withWidth()(UserList)
+export default withRouter(withWidth()(UserList))
 
 UserList.contextTypes = {
   router: PropTypes.object.isRequired
