@@ -1,17 +1,40 @@
 import React, {Component} from 'react'
-import {FormGroup, FormControl, Button} from 'react-bootstrap'
+import PropTypes from 'prop-types'
+import {FormGroup, Button} from 'react-bootstrap'
+import { withRouter } from 'react-router-dom'
 
 class Login extends Component {
+
+  constructor() {
+    super()
+    this.state = {
+      email: '',
+      password: ''
+    }
+    this.validateUser = this.validateUser.bind(this)
+  }
+
+  validateUser(e) {
+    e.preventDefault()
+    let user = this.state.email
+    let password = this.state.password
+    if(user === 'reactfanboy' && password === '1234'){
+      this.props.history.push(`/`)
+    } else {
+      console.log('you\'ve got issues mate')
+    }
+  }
+
   render () {
     return (
-      <form className="form-signin">
+      <form className="form-signin" onSubmit={this.validateUser}>
         <FormGroup>
           <h2 className="form-signin-heading">Please sign in</h2>
         </FormGroup>
 
         <FormGroup>
-          <FormControl className="form-control" id="email" type="email" value="" placeholder="Enter email" />
-          <FormControl className="form-control" id="password" type="password" value="" placeholder="Password" />
+          <input onChange={(e)=>{ this.setState({ email: e.target.value }) }} className="form-control" id="email" type="text" value={this.state.email} placeholder="Enter email" />
+          <input onChange={(e)=>{ this.setState({ password: e.target.value }) }} className="form-control" id="password" type="password" value={this.state.password} placeholder="Password" />
         </FormGroup>
 
         <Button bsSize="large" bsStyle="primary" block type="submit">Sign in</Button>
@@ -20,4 +43,8 @@ class Login extends Component {
   }
 }
 
-export default Login
+export default withRouter(Login)
+
+Login.contextTypes = {
+  router: PropTypes.object.isRequired
+}
