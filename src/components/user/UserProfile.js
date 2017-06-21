@@ -10,7 +10,6 @@ import View from '../layout/View'
 class UserProfile extends Component {
 
   render() {
-    console.log(this.props)
     let user = this.props.user
     let {fullname, email} = user || {}
     let username = this.props.username
@@ -38,10 +37,6 @@ class UserProfile extends Component {
       </View>
     )
   }
-}
-
-UserProfile.propTypes = {
-  match: PropTypes.object.isRequired
 }
 
 export default UserProfile
