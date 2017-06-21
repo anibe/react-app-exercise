@@ -81,6 +81,7 @@ class App extends Component {
             <Route exact path="/" component={Dashboard} />
             <Route path="/users" component={UserProfile} />
             <Route path="/login" component={Login} />
+            <Route path="/workshops" component={WorkshopList} />
             <Route render={({ location }) => (
                 <h3>Page not found <code>{location.pathname}</code></h3>
               )} />
