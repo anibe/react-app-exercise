@@ -1,7 +1,26 @@
-import React from 'react'
+import React, {Component} from 'react'
+import { ListItem } from 'material-ui/List'
 
-const WorkshopList = () => (
-  <h1>There are no workshops :(</h1>
-)
+class WorkshopList extends Component {
+
+  render() {
+    const {workshops} = this.props
+    return (
+      <div>
+          { workshops.map(workshop => (
+              <div>
+                <h2><a href={workshop.url}>{workshop.title}</a></h2>
+                <strong>{workshop.price}</strong>
+                <div>
+
+                </div>
+              </div>
+            ))
+          }
+      </div>
+    )
+  }
+
+}
 
 export default WorkshopList

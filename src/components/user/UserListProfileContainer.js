@@ -11,6 +11,12 @@ class UserListProfileContainer extends Component {
     this.fetchUser(this.props.match.params.username)
   }
 
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.username !== this.props.match.params.username) {
+      this.fetchUser(this.props.match.params.username)
+    }
+  }
+
   fetchUser(username) {
     fetch(`/data/users/${username}.json`, {
         method: 'get'
