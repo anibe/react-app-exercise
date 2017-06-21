@@ -12,9 +12,6 @@ import View from '../layout/View'
 import UserListProfileContainer from './UserListProfileContainer'
 
 class UserList extends Component {
-  constructor() {
-    super()
-  }
 
   showUserProfile(user) {
     this.props.history.push(`/users/${user.username}`)
