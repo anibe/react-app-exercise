@@ -9,7 +9,7 @@ import withWidth from 'material-ui/utils/withWidth'
 import { Route } from 'react-router-dom'
 
 import View from '../layout/View'
-import UserProfile from './UserProfile'
+import UserListProfileContainer from './UserListProfileContainer'
 
 class UserList extends Component {
   constructor() {
@@ -35,7 +35,7 @@ class UserList extends Component {
             />
           ))}
         </View>
-        <Route path={`${match.url}/:username`} component={UserProfile} />
+        <Route path={`${match.url}/:username`} component={UserListProfileContainer} />
       </View>
     )
   }
